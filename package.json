@@ -1,0 +1,26 @@
+{
+  "name": "@mh-bon/sudo-fs",
+  "version": "1.0.0",
+  "description": "Like fs module. To use with sudo / elevate. Works on linux, mac, windows.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mh-cbon <mh-cbon@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@mh-cbon/c-aghfabsowecwn": "^1.0.2",
+    "@mh-cbon/c-yasudo": "^1.0.1",
+    "@mh-cbon/catf": "^1.0.2",
+    "@mh-cbon/ls-json": "^1.0.1",
+    "@mh-cbon/write": "^1.0.1",
+    "@mh-cbon/yasudo": "^1.0.7",
+    "mississippi": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.5.2"
+  },
+  "devDependencies": {
+    "should": "^8.3.1"
+  }
+}
