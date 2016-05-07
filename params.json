@@ -1,0 +1,6 @@
+{
+  "name": "Sudo-fs",
+  "tagline": "Like fs module. To use with sudo / elevate. Works on linux, mac, windows.",
+  "body": "# sudo-fs\r\n\r\nLike fs module to use with sudo / elevate.\r\n\r\nWorks on linux, mac, windows.\r\n\r\nVery partial port.\r\n\r\n# install\r\n\r\n```\r\nnpm i @mh-bon/sudo-fs --save\r\n```\r\n\r\n# usage\r\n\r\n```js\r\nvar fs = require('@mh-cbon/sudo-fs');\r\n\r\nfs.createReadStream('some.file').pipe(process.stdout);\r\nfs.createWriteStream('some.file').end('some data');\r\nfs.writeFile('some.file', 'content', {}, function (err, data) {});\r\nfs.readFile('some.file', {}, function (err, data) {});\r\nfs.exists('some.file', function (maybe) {});\r\nfs.chown('some.file', 'me', 'notyou', function (err) {});\r\nfs.chmod('some.file', 0777, function (err) {});\r\nfs.unlink('some.file', function (err) {});\r\nfs.mkdir('some/dir', function (err) {});\r\n\r\n```\r\n\r\n# todo\r\n\r\n- improve compatibility with node fs module.\r\n\r\n# Tests\r\n\r\nTo run the tests you should use those commands,\r\n\r\nTo check with node API:\r\n```\r\nmode=node mocha\r\n```\r\n\r\nTo check with linux yasudo API:\r\n```\r\nmode=node yasudo=<your pwd> mocha\r\n```\r\n\r\nTo check with windows wtf API:\r\n```\r\nmode=windows mocha\r\n```\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}

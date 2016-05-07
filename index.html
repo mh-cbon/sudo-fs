@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sudo-fs by mh-cbon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Sudo-fs</h1>
+      <h2 class="project-tagline">Like fs module. To use with sudo / elevate. Works on linux, mac, windows.</h2>
+      <a href="https://github.com/mh-cbon/sudo-fs" class="btn">View on GitHub</a>
+      <a href="https://github.com/mh-cbon/sudo-fs/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mh-cbon/sudo-fs/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="sudo-fs" class="anchor" href="#sudo-fs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>sudo-fs</h1>
+
+<p>Like fs module to use with sudo / elevate.</p>
+
+<p>Works on linux, mac, windows.</p>
+
+<p>Very partial port.</p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install</h1>
+
+<pre><code>npm i @mh-bon/sudo-fs --save
+</code></pre>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>usage</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> fs <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>@mh-cbon/sudo-fs<span class="pl-pds">'</span></span>);
+
+<span class="pl-smi">fs</span>.<span class="pl-en">createReadStream</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>).<span class="pl-en">pipe</span>(<span class="pl-c1">process</span>.<span class="pl-smi">stdout</span>);
+<span class="pl-smi">fs</span>.<span class="pl-en">createWriteStream</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>).<span class="pl-en">end</span>(<span class="pl-s"><span class="pl-pds">'</span>some data<span class="pl-pds">'</span></span>);
+<span class="pl-smi">fs</span>.<span class="pl-en">writeFile</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>content<span class="pl-pds">'</span></span>, {}, <span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">data</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">readFile</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, {}, <span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">data</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">exists</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">maybe</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">chown</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>me<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>notyou<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">chmod</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, <span class="pl-c1">0777</span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">unlink</span>(<span class="pl-s"><span class="pl-pds">'</span>some.file<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {});
+<span class="pl-smi">fs</span>.<span class="pl-en">mkdir</span>(<span class="pl-s"><span class="pl-pds">'</span>some/dir<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {});
+</pre></div>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>todo</h1>
+
+<ul>
+<li>improve compatibility with node fs module.</li>
+</ul>
+
+<h1>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tests</h1>
+
+<p>To run the tests you should use those commands,</p>
+
+<p>To check with node API:</p>
+
+<pre><code>mode=node mocha
+</code></pre>
+
+<p>To check with linux yasudo API:</p>
+
+<pre><code>mode=node yasudo=&lt;your pwd&gt; mocha
+</code></pre>
+
+<p>To check with windows wtf API:</p>
+
+<pre><code>mode=windows mocha
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mh-cbon/sudo-fs">Sudo-fs</a> is maintained by <a href="https://github.com/mh-cbon">mh-cbon</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
