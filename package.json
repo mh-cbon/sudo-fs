@@ -1,6 +1,6 @@
 {
   "name": "@mh-cbon/sudo-fs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Like fs module. To use with sudo / elevate. Works on linux, mac, windows.",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "public": "npm publish --access=public"
   },
   "keywords": [
-    "sudo", "fs"
+    "sudo",
+    "fs"
   ],
   "author": "mh-cbon <mh-cbon@users.noreply.github.com>",
   "license": "MIT",
