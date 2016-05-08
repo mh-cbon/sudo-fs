@@ -44,7 +44,7 @@ mode=node mocha
 
 To check with linux yasudo API:
 ```
-mode=node yasudo=<your pwd> mocha
+mode=linux yasudo=<your pwd> mocha
 ```
 
 To check with windows wtf API:
