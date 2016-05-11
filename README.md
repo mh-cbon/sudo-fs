@@ -9,7 +9,7 @@ Very partial port.
 # install
 
 ```
-npm i @mh-bon/sudo-fs --save
+npm i @mh-cbon/sudo-fs --save
 ```
 
 # usage
