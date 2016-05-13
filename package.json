@@ -28,7 +28,8 @@
     "@mh-cbon/yasudo": "^1.0.7",
     "mississippi": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "touch": "^1.0.0"
   },
   "devDependencies": {
     "should": "^8.3.1"

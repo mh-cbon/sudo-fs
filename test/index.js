@@ -73,6 +73,17 @@ describe('sudo-fs', function () {
       })
     })
   })
+  it('should touch a file', function (done) {
+    sudoFs.touch(__dirname + '/var/touch', function (err) {
+      err && console.error(err);
+      (!!err).should.eql(false);
+      fs.exists(__dirname + '/var/touch', function (err) {
+        (!!err).should.eql(true);
+        fs.unlinkSync(__dirname + '/var/touch');
+        done();
+      })
+    })
+  })
   it('should create a dir', function (done) {
     sudoFs.mkdir(__dirname + '/var/dir', function (err) {
       err && console.error(err);
