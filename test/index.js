@@ -38,6 +38,46 @@ describe('sudo-fs', function () {
       done();
     }))
   })
+  it('should properly emits events when stream reading a file', function (done) {
+    var events = '';
+    sudoFs.createReadStream(__dirname + '/fixtures/read')
+    .on('close', function () {
+      events += 'close'
+    })
+    .on('open', function () {
+      events += 'open'
+    })
+    .on('error', function () {
+      events += 'error'
+    })
+    .on('end', function () {
+      events += 'end'
+    }).resume()
+    setTimeout(function(){
+      events.should.eql('openendclose');
+      done();
+    }, 500)
+  })
+  it('should properly fail to read stream a file', function (done) {
+    var events = '';
+    sudoFs.createReadStream(__dirname + '/fixtures/nop')
+    .on('open', function () {
+      events += 'open'
+    })
+    .on('error', function () {
+      events += 'error'
+    })
+    .on('close', function () {
+      events += 'close'
+    })
+    .on('end', function () {
+      events += 'end'
+    })
+    setTimeout(function(){
+      events.should.eql('error');
+      done();
+    }, 500)
+  })
   it('should read a file', function (done) {
     sudoFs.readFile(__dirname + '/fixtures/read', function (err, content) {
       err && console.error(err);
@@ -60,6 +100,47 @@ describe('sudo-fs', function () {
       }))
     });
     stream.end("content\nto\nwrite\n")
+  })
+  it('should properly emits events when stream writing a file', function (done) {
+    var events = '';
+    sudoFs.createWriteStream(__dirname + '/fixtures/write2')
+    .on('close', function () {
+      events += 'close'
+    })
+    .on('open', function () {
+      events += 'open'
+    })
+    .on('error', function () {
+      events += 'error'
+    // voluntarly ignore end event...
+    // })
+    // .on('end', function () {
+    //   events += 'end'
+    }).end('some')
+    setTimeout(function(){
+      events.should.eql('openclose');
+      done();
+    }, 500)
+  })
+  it('should properly fail to write stream a file', function (done) {
+    var events = '';
+    sudoFs.createWriteStream('nop:///dev/null')
+    .on('open', function () {
+      events += 'open'
+    })
+    .on('error', function () {
+      events += 'error'
+    })
+    .on('close', function () {
+      events += 'close'
+    })
+    .on('end', function () {
+      events += 'end'
+    })
+    setTimeout(function(){
+      events.should.eql('error');
+      done();
+    }, 500)
   })
   it('should write a file', function (done) {
     sudoFs.writeFile(__dirname + '/var/write', "content\nto\nwrite\n", function (err, content) {
