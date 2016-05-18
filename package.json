@@ -1,6 +1,6 @@
 {
   "name": "@mh-cbon/sudo-fs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Like fs module. To use with sudo / elevate. Works on linux, mac, windows.",
   "main": "index.js",
   "scripts": {
