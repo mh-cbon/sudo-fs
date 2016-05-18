@@ -9,12 +9,21 @@ var mode = process.env['mode'] || 'auto';
 if (mode==='node') {
   sudoFs = require('fs');
   console.error("Using node api");
+  sudoFs.touch = function (fPath, options, callback) {
+    if (!callback && typeof(options)==='function') {
+      callback = options
+      options = {}
+    }
+    options = options || {};
+    options.flag = 'a';
+    sudoFs.writeFile(fPath, '', options, callback);
+  }
 } else if (mode==='windows') {
-    sudoFs = require('../lib/windows.js');
-    console.error("Using windows api");
+  sudoFs = require('../lib/windows.js');
+  console.error("Using windows api");
 } else if (mode==='linux') {
-    sudoFs = require('../lib/linux.js');
-    console.error("Using linux api");
+  sudoFs = require('../lib/linux.js');
+  console.error("Using linux api");
 }
 
 describe('sudo-fs', function () {
@@ -57,12 +66,14 @@ describe('sudo-fs', function () {
       err && console.error(err);
       (!!err).should.eql(false);
       sudoFs.readFile(__dirname + '/var/write', function (err, content) {
+        err && console.error(err);
         (!!err).should.eql(false);
         content.toString().should.eql("content\nto\nwrite\n");
         done();
       })
     })
   })
+
   it('should unlink a file', function (done) {
     sudoFs.unlink(__dirname + '/var/write', function (err) {
       err && console.error(err);
